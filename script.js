@@ -24,8 +24,9 @@ try {
 
             for (var row = 1; row <= chatList.length; row++) {
                 const alert = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                const favAlert = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
-                var hasMessage = !isNaN(alert?.innerText || alert?.textContent);
+                var hasMessage = !isNaN(alert?.innerText || alert?.textContent) || !isNaN(favAlert?.innerText || favAlert?.textContent);
 
                 const squareMessage = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
