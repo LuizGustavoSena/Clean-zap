@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Clean zap",
+    "version": "1.0.0",
+    "description": "Cleaner your WhatsApp web page",
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "tabs",
+        "extension.js"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://web.whatsapp.com/"
+            ],
+            "js": [
+                "script.js"
+            ]
+        }
+    ]
+}
