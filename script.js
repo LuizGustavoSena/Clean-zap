@@ -1,47 +1,64 @@
-try {
-    const observer = new MutationObserver(() => {
-        const talkListBar = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const searchBar = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const filter = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[2]', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const header = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/header', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const appMessage = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[4]/div/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const chat = document.evaluate('/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        var chatList;
+const observer = new MutationObserver(() => {
+    const talkListBar = getElementByXPath(Xpaths.talkListBar);
+    const searchBar = getElementByXPath(Xpaths.searchBar);
+    const filter = getElementByXPath(Xpaths.filter);
+    const header = getElementByXPath(Xpaths.header);
+    const appMessage = getElementByXPath(Xpaths.appMessage);
+    const chat = getElementByXPath(Xpaths.chat);
 
-        if (searchBar)
-            searchBar.style.display = 'none';
-        if (filter)
-            filter.style.display = 'none';
-        if (header)
-            header.style.display = 'none';
-        if (talkListBar)
-            talkListBar.style.maxWidth = '90px';
-        if (appMessage)
-            appMessage.style.display = 'none';
+    hideElements([searchBar, filter, header, appMessage]);
 
-        if (chat) {
-            chatList = chat.children;
+    if (talkListBar)
+        talkListBar.style.maxWidth = '90px';
 
-            for (var row = 1; row <= chatList.length; row++) {
-                const alert = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                const favAlert = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    if (chat) {
+        const chatList = chat.children;
 
-                var hasMessage = !isNaN(alert?.innerText || alert?.textContent) || !isNaN(favAlert?.innerText || favAlert?.textContent);
+        for (var row = 1; row <= chatList.length; row++) {
+            const alert = getElementByXPath(Xpaths.alert(row));
+            const favAlert = getElementByXPath(Xpaths.favAlert(row));
 
-                const squareMessage = document.evaluate(`/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+            var hasMessage = hasText(alert) || hasText(favAlert);
 
-                if (hasMessage)
-                    squareMessage.style.backgroundColor = '#075e54';
+            const squareMessage = getElementByXPath(Xpaths.squareMessage(row));
 
-                if (!hasMessage)
-                    squareMessage.style.removeProperty('background-color');
-            }
+            if (hasMessage)
+                squareMessage.style.backgroundColor = '#075e54';
+
+            if (!hasMessage)
+                squareMessage.style.removeProperty('background-color');
         }
+    }
 
+});
+
+const config = { attributes: true, childList: true, subtree: true };
+observer.observe(document.body, config);
+
+const getElementByXPath = (path) => {
+    return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+}
+
+const hideElements = (elements) => {
+    elements.forEach(el => {
+        if (!el) return;
+
+        el.style.display = 'none';
     });
+}
 
-    const config = { attributes: true, childList: true, subtree: true };
-    observer.observe(document.body, config);
-} catch (error) {
-    alert(error)
+const hasText = (element) => {
+    return !isNaN(element?.innerText || element?.textContent);
+}
+
+const Xpaths = {
+    talkListBar: '/html/body/div[1]/div/div/div[3]/div/div[3]',
+    searchBar: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
+    filter: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[2]',
+    header: '/html/body/div[1]/div/div/div[3]/div/div[3]/header',
+    appMessage: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[4]/div/div/div',
+    chat: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div',
+    alert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span`,
+    favAlert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span`,
+    squareMessage: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
 }
