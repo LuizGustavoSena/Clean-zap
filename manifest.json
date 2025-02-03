@@ -9,9 +9,6 @@
         "tabs",
         "extension.js"
     ],
-    "action": {
-        "default_popup": "popup.html"
-    },
     "content_scripts": [
         {
             "matches": [
@@ -19,7 +16,14 @@
             ],
             "js": [
                 "script.js"
-            ]
+            ],
+            "run_at": "document_end"
         }
-    ]
+    ],
+    "icons": {
+        "16": "CleanZap16.jpg",
+        "32": "CleanZap32.jpg",
+        "48": "CleanZap48.jpg",
+        "128": "CleanZap128.jpg"
+    }
 }
