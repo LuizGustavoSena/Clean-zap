@@ -38,8 +38,10 @@ Promise.race([
                 if (hasMessage)
                     squareMessage.style.backgroundColor = '#075e54';
 
-                if (!hasMessage)
+                if (!hasMessage) {
                     squareMessage.style.removeProperty('background-color');
+                    squareMessage.style.removeProperty('--darkreader-inline-bgcolor');
+                }
             }
         }
     });
