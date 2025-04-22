@@ -9,8 +9,9 @@ Promise.race([
     const filter = getElementByXPath(Xpaths.filter);
     const header = getElementByXPath(Xpaths.header);
     const textArea = getElementByXPath(Xpaths.textBar);
+    const headerBar = getElementByXPath(Xpaths.headerBar);
 
-    hideElements([searchBar, filter, header]);
+    hideElements([searchBar, filter, header, headerBar]);
 
     if (textArea)
         textArea.style.flex = 'none';
@@ -84,6 +85,7 @@ const Xpaths = {
     emojiBar: '/html/body/div[1]/div/div/div[2]/span/div',
     textBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
     imageBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[2]',
+    headerBar: '/html/body/div[1]/div/div/div[3]/div/header',
     alert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span`,
     favAlert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span`,
     squareMessage: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
