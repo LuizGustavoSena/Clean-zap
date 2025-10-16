@@ -77,15 +77,15 @@ const hasText = (element) => {
 
 const Xpaths = {
     talkListBar: '/html/body/div[1]/div/div/div[3]/div/div[3]',
-    searchBar: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[1]',
-    filter: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[2]',
-    header: '/html/body/div[1]/div/div/div[3]/div/div[3]/header',
+    searchBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[1]',
+    filter: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[2]',
+    header: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/header',
     appMessage: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[4]/div/div/div',
     chat: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div',
     emojiBar: '/html/body/div[1]/div/div/div[2]/span/div',
     textBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
     imageBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[2]',
-    headerBar: '/html/body/div[1]/div/div/div[3]/div/header',
+    headerBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
     alert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span`,
     favAlert: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span`,
     squareMessage: (row) => `/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
