@@ -52,9 +52,13 @@ Promise.race([
 
     const observerEmojiMidia = new MutationObserver(() => {
         const emoji = getElementByXPath(Xpaths.emojiBar);
+        const chatArea = getElementByXPath(Xpaths.chatArea);
 
         if (emoji)
             emoji.style.removeProperty('left');
+
+        if (chatArea)
+            chatArea.style.width = '90vw';
     });
 
     observerEmojiMidia.observe(document.body, { childList: true, subtree: true });
@@ -85,6 +89,7 @@ const Xpaths = {
     textBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
     imageBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[2]',
     leftSideBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
+    chatArea: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[5]/div',
     alert: (row) => `   /html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span/span`,
     favAlert: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[1]/div[2]`,
     squareMessage: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
