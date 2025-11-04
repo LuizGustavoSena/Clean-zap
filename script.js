@@ -17,7 +17,7 @@ Promise.race([
         textArea.style.flex = 'none';
 
     if (talkListBar)
-        talkListBar.style.maxWidth = '90px';
+        talkListBar.style.maxWidth = '64px';
 
     const observerNotification = new MutationObserver(() => {
         const appMessage = getElementByXPath(Xpaths.appMessage);
@@ -26,6 +26,7 @@ Promise.race([
         const chat = getElementByXPath(Xpaths.chat);
 
         if (chat) {
+            chat.style.marginLeft = '-22px';
             const chatList = chat.children;
 
             for (var row = 1; row <= chatList.length; row++) {
@@ -71,24 +72,22 @@ const hideElements = (elements) => {
     });
 }
 
-const hasText = (element) => {
-    return !isNaN(element?.innerText || element?.textContent);
-}
+const hasText = (element) => !isNaN(element?.innerText || element?.textContent);
 
 const Xpaths = {
-    talkListBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]',
-    searchBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[1]',
-    filter: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[2]',
-    header: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/header',
+    talkListBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]',
+    searchBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[1]',
+    filter: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[2]',
+    header: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/header',
     appMessage: '/html/body/div[1]/div/div/div[3]/div/div[3]/div/div[4]/div/div/div',
-    chat: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div',
-    emojiBar: '/html/body/div[1]/div/div/div[2]/span/div',
+    chat: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div',
+    emojiBar: '/html/body/div[1]/div/div/div[1]/div/div[2]/span/div',
     textBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[1]',
     imageBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[2]',
     leftSideBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
-    alert: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span/span`,
-    favAlert: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span/span`,
-    squareMessage: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[3]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
+    alert: (row) => `   /html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span/span`,
+    favAlert: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[1]/div[2]`,
+    squareMessage: (row) => `/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
 }
 
 function waitElement(selector) {
