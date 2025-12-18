@@ -90,9 +90,9 @@ const Xpaths = {
     imageBar: '/html/body/div[1]/div/div/div[3]/div/div[2]/div[2]',
     leftSideBar: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/header',
     chatArea: '/html/body/div[1]/div/div/div[1]/div/div[3]/div/div[5]/div',
-    alert: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div[2]/div[2]/div[2]/span[1]/div/span/span`,
-    favAlert: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span/span`,
-    squareMessage: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div[1]`
+    alert: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div/span/span`,
+    favAlert: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[2]/div[2]/div[2]/span[1]/div[2]/span/span`,
+    squareMessage: (row) => `/html/body/div[1]/div/div/div/div/div[3]/div/div[4]/div/div[3]/div[1]/div/div/div[${row}]/div/div/div/div[1]`
 }
 
 function waitElement(selector) {
