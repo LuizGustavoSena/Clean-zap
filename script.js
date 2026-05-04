@@ -18,10 +18,10 @@ Promise.race([
         textArea.style.flex = 'none';
 
     if (talkListBar)
-        talkListBar.style.maxWidth = '80px';
+        talkListBar.style.maxWidth = '70px';
 
     if (talkListContainer){
-        talkListContainer.style.maxWidth = '90px';
+        talkListContainer.style.maxWidth = '65px';
         talkListContainer.style.flex = 'initial';
     }
 
